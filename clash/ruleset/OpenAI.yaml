@@ -1,0 +1,4 @@
+# NAME: OpenAI
+
+payload:
+  - DOMAIN-SUFFIX,openai.com

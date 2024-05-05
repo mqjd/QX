@@ -187,32 +187,32 @@ proxy-groups:
   - {name: MATCH, <<: *a3}
 
 rule-providers:
-  OpenAI: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/OpenAI.yaml, path: ./ruleset/OpenAI.yaml}
-  Adobe: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Adobe.yaml, path: ./ruleset/Adobe.yaml}
-  Apple: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Apple.yaml, path: ./ruleset/Apple.yaml}
-  Amazon: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Amazon.yaml, path: ./ruleset/Amazon.yaml}
-  China: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/China.yaml, path: ./ruleset/China.yaml}
-  DingTalk: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/DingTalk.yaml, path: ./ruleset/DingTalk.yaml}
-  Facebook: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Facebook.yaml, path: ./ruleset/Facebook.yaml}
-  GitHub: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/GitHub.yaml, path: ./ruleset/GitHub.yaml}
-  Google: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Google.yaml, path: ./ruleset/Google.yaml}
-  Microsoft: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Microsoft.yaml, path: ./ruleset/Microsoft.yaml}
-  Netflix: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Netflix.yaml, path: ./ruleset/Netflix.yaml}
-  NetEase: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/NetEase.yaml, path: ./ruleset/NetEase.yaml}
-  Spotify: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Spotify.yaml, path: ./ruleset/Spotify.yaml}
-  Speedtest: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Speedtest.yaml, path: ./ruleset/Speedtest.yaml}
-  Steam: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Steam.yaml, path: ./ruleset/Steam.yaml}
-  Telegram: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Telegram.yaml, path: ./ruleset/Telegram.yaml}
-  Twitter: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Twitter.yaml, path: ./ruleset/Twitter.yaml}
-  Tencent: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Tencent.yaml, path: ./ruleset/Tencent.yaml}
-  TencentVideo: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/TencentVideo.yaml, path: ./ruleset/TencentVideo.yaml}
-  YouTube: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/YouTube.yaml, path: ./ruleset/YouTube.yaml}
-  WhatsApp: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/WhatsApp.yaml, path: ./ruleset/WhatsApp.yaml}
-  WeChat: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/WeChat.yaml, path: ./ruleset/WeChat.yaml}
-  PayPal: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/PayPal.yaml, path: ./ruleset/PayPal.yaml}
-  Zoom: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Zoom.yaml, path: ./ruleset/Zoom.yaml}
+  OpenAI: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/OpenAI.yaml, path: ./ruleset/OpenAI.yaml}
+  Adobe: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Adobe.yaml, path: ./ruleset/Adobe.yaml}
+  Apple: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Apple.yaml, path: ./ruleset/Apple.yaml}
+  Amazon: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Amazon.yaml, path: ./ruleset/Amazon.yaml}
+  China: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/China.yaml, path: ./ruleset/China.yaml}
+  DingTalk: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/DingTalk.yaml, path: ./ruleset/DingTalk.yaml}
+  Facebook: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Facebook.yaml, path: ./ruleset/Facebook.yaml}
+  GitHub: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/GitHub.yaml, path: ./ruleset/GitHub.yaml}
+  Google: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Google.yaml, path: ./ruleset/Google.yaml}
+  Microsoft: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Microsoft.yaml, path: ./ruleset/Microsoft.yaml}
+  Netflix: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Netflix.yaml, path: ./ruleset/Netflix.yaml}
+  NetEase: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/NetEase.yaml, path: ./ruleset/NetEase.yaml}
+  Spotify: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Spotify.yaml, path: ./ruleset/Spotify.yaml}
+  Speedtest: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Speedtest.yaml, path: ./ruleset/Speedtest.yaml}
+  Steam: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Steam.yaml, path: ./ruleset/Steam.yaml}
+  Telegram: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Telegram.yaml, path: ./ruleset/Telegram.yaml}
+  Twitter: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Twitter.yaml, path: ./ruleset/Twitter.yaml}
+  Tencent: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Tencent.yaml, path: ./ruleset/Tencent.yaml}
+  TencentVideo: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/TencentVideo.yaml, path: ./ruleset/TencentVideo.yaml}
+  YouTube: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/YouTube.yaml, path: ./ruleset/YouTube.yaml}
+  WhatsApp: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/WhatsApp.yaml, path: ./ruleset/WhatsApp.yaml}
+  WeChat: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/WeChat.yaml, path: ./ruleset/WeChat.yaml}
+  PayPal: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/PayPal.yaml, path: ./ruleset/PayPal.yaml}
+  Zoom: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Zoom.yaml, path: ./ruleset/Zoom.yaml}
   ChinaIP: {<<: *a7, url: https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml, path: ./ruleset/ChinaIP.yaml}
-  Proxy: {<<: *a6, url: https://cdn.jsdelivr.net/gh/Semporia/Clash@master/Rule/Proxy.yaml, path: ./ruleset/Proxy.yaml}
+  Proxy: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Proxy.yaml, path: ./ruleset/Proxy.yaml}
   
 rules:
   - RULE-SET,Adobe,REJECT
