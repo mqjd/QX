@@ -144,77 +144,79 @@ ipcidr: &a7 {type: http, behavior: ipcidr, interval: 86400}
 proxy-providers:
   Subscribe:
     <<: *a1
-    url: 订阅链接
+    url: 订阅地址
     path: ./proxy_providers/Airport.yaml
     
 proxies: null
 proxy-groups:
-
+  - {name: 节点选择, type: select, proxies: [HK,JP,TW,US,SG]}
+  - {name: ⚓️其他流量, type: select, proxies: [DIRECT,节点选择]}
   - {name: ♻️ Auto, <<: *a4}
-  - {name: HK, <<: *a4, filter: "港|HK|(?i)Hong"}
+  - {name: HK, <<: *a4, filter: "港|HK|(?i)Hong", type: select}
   - {name: JP, <<: *a4, filter: "日本|东京|JP|(?i)Japan"}   
   - {name: TW, <<: *a4, filter: "台|湾|TW|(?i)Taiwan"}
   - {name: US, <<: *a4, filter: "美|US|(?i)States|American"}
   - {name: SG, <<: *a4, filter: "新|坡|SG|(?i)Singapore"}
-
   - {name: 🚀 Manual, <<: *a2}
-  - {name: OpenAI, type: select, proxies: [JP]}
-  - {name: Adobe, type: select, proxies: [REJECT]}
-  - {name: Apple, type: select, proxies: [REJECT]}
-  - {name: Amazon, type: select, proxies: [REJECT]}
+  - {name: Mine, type: select, proxies: [节点选择]}
+  - {name: OpenAI, type: select, proxies: [JP,节点选择,US,SG,TW]}
+  - {name: Adobe, type: select, proxies: [REJECT,节点选择,JP,US,SG,TW]}
+  - {name: Apple, type: select, proxies: [DIRECT,REJECT,节点选择,JP,US,SG,TW]}
+  - {name: Amazon, type: select, proxies: [DIRECT,REJECT,节点选择,JP,US,SG,TW]}
   - {name: China, type: select, proxies: [DIRECT]}
-  - {name: DingTalk, type: select, proxies: [US]}
-  - {name: Facebook, type: select, proxies: [REJECT]}
-  - {name: GitHub, type: select, proxies: [US]}
-  - {name: Google, type: select, proxies: [US]}
-  - {name: Microsoft, type: select, proxies: [US]}
-  - {name: Netflix, type: select, proxies: [REJECT]}
-  - {name: NetEase, type: select, proxies: [DIRECT]}
-  - {name: Spotify, type: select, proxies: [US]}
+  - {name: DingTalk, type: select, proxies: [REJECT,节点选择,JP,US,SG,TW]}
+  - {name: Facebook, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: GitHub, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: Google, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: Microsoft, type: select, proxies: [DIRECT,REJECT,节点选择,JP,US,SG,TW]}
+  - {name: Netflix, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: NetEase, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: Spotify, type: select, proxies: [节点选择,JP,US,SG,TW]}
   - {name: Speedtest, type: select, proxies: [DIRECT]}
   - {name: Steam, type: select, proxies: [DIRECT]}
-  - {name: Telegram, type: select, proxies: [US]}
-  - {name: Twitter, type: select, proxies: [REJECT]}
-  - {name: Tencent, type: select, proxies: [DIRECT,HK,TW]}
+  - {name: Telegram, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: Twitter, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: Tencent, type: select, proxies: [DIRECT]}
   - {name: TencentVideo, type: select, proxies: [DIRECT]}
-  - {name: YouTube, type: select, proxies: [REJECT]}
-  - {name: WhatsApp, type: select, proxies: [REJECT]}
+  - {name: YouTube, type: select, proxies: [节点选择,JP,US,SG,TW]}
+  - {name: WhatsApp, type: select, proxies: [节点选择,JP,US,SG,TW]}
   - {name: WeChat, type: select, proxies: [DIRECT]}
-  - {name: PayPal, type: select, proxies: [REJECT]}
+  - {name: PayPal, type: select, proxies: [节点选择,JP,US,SG,TW]}
   - {name: Zoom, type: select, proxies: [DIRECT]}
   - {name: ChinaIP, type: select, proxies: [DIRECT]}
-  - {name: 🌏 Global, <<: *a3}
-  - {name: MATCH, <<: *a3}
 
 rule-providers:
-  OpenAI: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/OpenAI.yaml, path: ./ruleset/OpenAI.yaml}
-  Adobe: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Adobe.yaml, path: ./ruleset/Adobe.yaml}
-  Apple: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Apple.yaml, path: ./ruleset/Apple.yaml}
-  Amazon: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Amazon.yaml, path: ./ruleset/Amazon.yaml}
-  China: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/China.yaml, path: ./ruleset/China.yaml}
-  DingTalk: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/DingTalk.yaml, path: ./ruleset/DingTalk.yaml}
-  Facebook: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Facebook.yaml, path: ./ruleset/Facebook.yaml}
-  GitHub: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/GitHub.yaml, path: ./ruleset/GitHub.yaml}
-  Google: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Google.yaml, path: ./ruleset/Google.yaml}
-  Microsoft: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Microsoft.yaml, path: ./ruleset/Microsoft.yaml}
-  Netflix: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Netflix.yaml, path: ./ruleset/Netflix.yaml}
-  NetEase: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/NetEase.yaml, path: ./ruleset/NetEase.yaml}
-  Spotify: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Spotify.yaml, path: ./ruleset/Spotify.yaml}
-  Speedtest: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Speedtest.yaml, path: ./ruleset/Speedtest.yaml}
-  Steam: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Steam.yaml, path: ./ruleset/Steam.yaml}
-  Telegram: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Telegram.yaml, path: ./ruleset/Telegram.yaml}
-  Twitter: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Twitter.yaml, path: ./ruleset/Twitter.yaml}
-  Tencent: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Tencent.yaml, path: ./ruleset/Tencent.yaml}
-  TencentVideo: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/TencentVideo.yaml, path: ./ruleset/TencentVideo.yaml}
-  YouTube: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/YouTube.yaml, path: ./ruleset/YouTube.yaml}
-  WhatsApp: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/WhatsApp.yaml, path: ./ruleset/WhatsApp.yaml}
-  WeChat: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/WeChat.yaml, path: ./ruleset/WeChat.yaml}
-  PayPal: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/PayPal.yaml, path: ./ruleset/PayPal.yaml}
-  Zoom: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Zoom.yaml, path: ./ruleset/Zoom.yaml}
+  OpenAI: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/OpenAI.yaml, path: ./ruleset/OpenAI.yaml}
+  Adobe: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Adobe.yaml, path: ./ruleset/Adobe.yaml}
+  Apple: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Apple.yaml, path: ./ruleset/Apple.yaml}
+  Amazon: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Amazon.yaml, path: ./ruleset/Amazon.yaml}
+  China: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/China.yaml, path: ./ruleset/China.yaml}
+  DingTalk: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/DingTalk.yaml, path: ./ruleset/DingTalk.yaml}
+  Facebook: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Facebook.yaml, path: ./ruleset/Facebook.yaml}
+  GitHub: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/GitHub.yaml, path: ./ruleset/GitHub.yaml}
+  Google: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Google.yaml, path: ./ruleset/Google.yaml}
+  Microsoft: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Microsoft.yaml, path: ./ruleset/Microsoft.yaml}
+  Netflix: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Netflix.yaml, path: ./ruleset/Netflix.yaml}
+  NetEase: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/NetEase.yaml, path: ./ruleset/NetEase.yaml}
+  Spotify: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Spotify.yaml, path: ./ruleset/Spotify.yaml}
+  Speedtest: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Speedtest.yaml, path: ./ruleset/Speedtest.yaml}
+  Steam: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Steam.yaml, path: ./ruleset/Steam.yaml}
+  Telegram: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Telegram.yaml, path: ./ruleset/Telegram.yaml}
+  Twitter: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Twitter.yaml, path: ./ruleset/Twitter.yaml}
+  Tencent: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Tencent.yaml, path: ./ruleset/Tencent.yaml}
+  TencentVideo: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/TencentVideo.yaml, path: ./ruleset/TencentVideo.yaml}
+  YouTube: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/YouTube.yaml, path: ./ruleset/YouTube.yaml}
+  WhatsApp: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WhatsApp.yaml, path: ./ruleset/WhatsApp.yaml}
+  WeChat: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WeChat.yaml, path: ./ruleset/WeChat.yaml}
+  PayPal: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/PayPal.yaml, path: ./ruleset/PayPal.yaml}
+  Zoom: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Zoom.yaml, path: ./ruleset/Zoom.yaml}
   ChinaIP: {<<: *a7, url: https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml, path: ./ruleset/ChinaIP.yaml}
-  Proxy: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@master/clash/ruleset/Proxy.yaml, path: ./ruleset/Proxy.yaml}
-  
+  Proxy: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Proxy.yaml, path: ./ruleset/Proxy.yaml}
+  Mine: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Mine.yaml, path: ./ruleset/Mine.yaml}
+
 rules:
+  - RULE-SET,Mine,Mine
+  - RULE-SET,OpenAI,OpenAI
   - RULE-SET,Adobe,REJECT
   - RULE-SET,Apple,Apple
   - RULE-SET,Amazon,Amazon
@@ -239,7 +241,7 @@ rules:
   - RULE-SET,Zoom,Zoom
   - RULE-SET,China,DIRECT
   - RULE-SET,ChinaIP,DIRECT
-  - RULE-SET,Proxy,🌏 Global
+  - RULE-SET,Proxy,节点选择
 
  # Local Area Network
   - IP-CIDR,192.168.0.0/16,DIRECT
@@ -256,4 +258,4 @@ rules:
   # （可选）使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确的问题，使用 ChinaIP.yaml 时可禁用下列直至（包括）「GEOIP,CN」规则
 
   - GEOIP,CN,DIRECT
-  - MATCH,MATCH
+  - MATCH,⚓️其他流量
