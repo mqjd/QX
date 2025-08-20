@@ -247,33 +247,33 @@ dns:
 log-level: warning
 mode: rule
 rule-providers:
-  OpenAI: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/OpenAI.yaml'}
-  Adobe: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Adobe.yaml'}
-  Apple: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Apple.yaml'}
-  Amazon: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Amazon.yaml'}
-  China: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/China.yaml'}
-  DingTalk: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/DingTalk.yaml'}
-  Facebook: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Facebook.yaml'}
-  GitHub: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/GitHub.yaml'}
-  Google: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Google.yaml'}
-  Microsoft: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Microsoft.yaml'}
-  Netflix: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Netflix.yaml'}
-  NetEase: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/NetEase.yaml'}
-  Spotify: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Spotify.yaml'}
-  Speedtest: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Speedtest.yaml'}
-  Steam: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Steam.yaml'}
-  Telegram: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Telegram.yaml'}
-  Twitter: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Twitter.yaml'}
-  Tencent: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Tencent.yaml'}
-  TencentVideo: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/TencentVideo.yaml'}
-  YouTube: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/YouTube.yaml'}
-  WhatsApp: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WhatsApp.yaml'}
-  WeChat: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WeChat.yaml'}
-  PayPal: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/PayPal.yaml'}
-  Zoom: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Zoom.yaml'}
+  OpenAI: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/OpenAI.yaml'}
+  Adobe: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Adobe.yaml'}
+  Apple: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Apple.yaml'}
+  Amazon: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Amazon.yaml'}
+  China: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/China.yaml'}
+  DingTalk: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/DingTalk.yaml'}
+  Facebook: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Facebook.yaml'}
+  GitHub: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/GitHub.yaml'}
+  Google: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Google.yaml'}
+  Microsoft: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Microsoft.yaml'}
+  Netflix: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Netflix.yaml'}
+  NetEase: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/NetEase.yaml'}
+  Spotify: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Spotify.yaml'}
+  Speedtest: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Speedtest.yaml'}
+  Steam: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Steam.yaml'}
+  Telegram: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Telegram.yaml'}
+  Twitter: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Twitter.yaml'}
+  Tencent: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Tencent.yaml'}
+  TencentVideo: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/TencentVideo.yaml'}
+  YouTube: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/YouTube.yaml'}
+  WhatsApp: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/WhatsApp.yaml'}
+  WeChat: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/WeChat.yaml'}
+  PayPal: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/PayPal.yaml'}
+  Zoom: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Zoom.yaml'}
   ChinaIP: {!!merge <<: *a7, url: 'https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml'}
-  Proxy: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Proxy.yaml'}
-  Mine: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Mine.yaml', behavior: classical, format: yaml, interval: 86400}
+  Proxy: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Proxy.yaml'}
+  Mine: {!!merge <<: *a6, url: 'https://mqjd.github.io/QX/clash/ruleset/Mine.yaml', behavior: classical, format: yaml, interval: 86400}
   Tiktok:
     behavior: classical
     format: text
