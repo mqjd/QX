@@ -1,261 +1,285 @@
-#==========================================
-# @ConfigName        自用 Clash 配置文件
-# @Author            @Semporia
-# @Feedback          请通过邮件反馈问题[其它方式一概无视]Semporia@hotmail.com 💡
-# @UpdateTime        2024-03-25 14:05 UTC/GMT +8
-# @Function          支持手动选择、自动测速、广告屏蔽、兜底分流、按国家分组节点、多机场订阅等等   
-# @Attention         𝐏𝐥𝐞𝐚𝐬𝐞 𝐮𝐬𝐞 𝐭𝐡𝐞 𝐥𝐚𝐭𝐞𝐬𝐭 𝐯𝐞𝐫𝐬𝐢𝐨𝐧 𝐨𝐟 𝐂𝐥𝐚𝐬𝐡 𝐟𝐨𝐫 𝐖𝐢𝐧𝐝𝐨𝐰𝐬
-# @ConfigVersion     1.0.20
-#==========================================
-
-# Port of HTTP(S) proxy server on the local end
-port: 7890
- 
-# Port of SOCKS5 proxy server on the local end
-socks-port: 7891
- 
-# Transparent proxy server port for Linux and macOS
-# redir-port: 7892
- 
-# HTTP(S) and SOCKS5 server on the same port
-mixed-port: 7890
- 
-# authentication of local SOCKS5/HTTP(S) server
-# authentication:
-#  - "user1:pass1"
-#  - "user2:pass2"
- 
-# Set to true to allow connections to local-end server from
-# other LAN IP addresses
-allow-lan: false
- 
-# This is only applicable when `allow-lan` is `true`
-# '*': bind all IP addresses
-# 192.168.122.11: bind a single IPv4 address
-# "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
-bind-address: '*'
- 
-# Clash router working mode
-# rule: rule-based packet routing
-# global: all packets will be forwarded to a single endpoint
-# direct: directly forward the packets to the Internet
-mode: Rule
- 
-# Clash by default prints logs to STDOUT
-# info / warning / error / debug / silent
-log-level: info
- 
-# When set to false, resolver won't translate hostnames to IPv6 addresses
-ipv6: true
- 
-# RESTful web API listening address
-external-controller: 127.0.0.1:59446
- 
-# A relative path to the configuration directory or an absolute path to a
-# directory in which you put some static web resource. Clash core will then
-# serve it at `${API}/ui`.
-# external-ui: folder
- 
-# Secret for the RESTful API (optional)
-# Authenticate by spedifying HTTP header `Authorization: Bearer ${secret}`
-# ALWAYS set a secret if RESTful API is listening on 0.0.0.0
-# secret: 357e4d16-90c4-4afe-bb32-2e7b30e051f8
- 
-# Outbound interface name
-# interface-name: en0
- 
-# Static hosts for DNS server and connection establishment, only works
-# when `dns.enhanced-mode` is `redir-host`.
-#
-# Wildcard hostnames are supported (e.g. *.clash.dev, *.foo.*.example.com)
-# Non-wildcard domain names has a higher priority than wildcard domain names
-# e.g. foo.example.com > *.example.com > .example.com
-# P.S. +.foo.com equals to .foo.com and foo.com
-hosts:
-  'mtalk.google.com': 108.177.125.188
-  # '*.clash.dev': 127.0.0.1
-  # '.dev': 127.0.0.1
-  # 'alpha.clash.dev': '::1'
- 
-# DNS server settings
-# This section is optional. When not present, DNS server will be disabled.
+# 策略组引用
+Pro: &a1 {type: http, interval: 43200, health-check: {enable: true, url: 'http://www.gstatic.com/generate_204', interval: 1800}}
+Man: &a2 {type: select, use: [Subscribe]}
+Pr: &a3 {type: select, proxies: [♻️ Auto]}
+Auto: &a4 {type: url-test, lazy: true, url: 'http://www.gstatic.com/generate_204', interval: 900, use: [Subscribe]}
+domain: &a5 {type: http, behavior: domain, interval: 86400}
+classical: &a6 {type: http, behavior: classical, interval: 86400}
+ipcidr: &a7 {type: http, behavior: ipcidr, interval: 86400}
+proxy-providers:
+  Subscribe:
+    !!merge <<: *a1
+    url: url
+    benchmark-url: http://www.gstatic.com/generate_204
+    interval: 43200
+proxy-groups:
+  # 功能分组
+  - name: 节点选择
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png
+    type: select
+    proxies:
+      - 自动选择
+      - PT 香港
+      - PT 台湾
+      - HK 香港
+      - HK Fast
+      - TW 台湾
+      - SG 新加坡
+      - JP 日本
+      - US 美国
+      - DIRECT
+  - name: 其他流量
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
+    type: select
+    proxies:
+      - 节点选择
+      - DIRECT
+  - name: Tiktok
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png
+    type: select
+    proxies:
+      - PT 香港
+      - PT 台湾
+      - HK 香港
+      - HK Fast
+      - TW 台湾
+      - SG 新加坡
+      - JP 日本
+      - US 美国
+  - name: PT 香港
+    !!merge <<: *a4
+    filter: "(白金).*(?i)(港|HK|Hong)"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: select
+    include-all: true
+    use:
+      - Subscribe
+  - name: PT 台湾
+    !!merge <<: *a4
+    filter: "(白金).*(台|TW|Tai)"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: select
+    include-all: true
+    use:
+      - Subscribe
+  # 基于地区分组
+  - name: HK 香港
+    !!merge <<: *a4
+    filter: "澳门|🇲🇴|港|🇭🇰|HK|(?i)Hong"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: url-test
+    include-all: true
+  - name: HK Fast
+    !!merge <<: *a4
+    filter: (?i)(港|HK|Hong).+\d(x|X)
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: url-test
+    include-all: true
+    use:
+      - Subscribe
+  - name: TW 台湾
+    !!merge <<: *a4
+    filter: "(?=.*(台|TW|Tai))^((?!(免费)).)*$"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: url-test
+    include-all: true
+  - name: SG 新加坡
+    !!merge <<: *a4
+    filter: "(?i)(新加坡|坡|狮城|马来|SG|Singapore)"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: select
+    include-all: true
+    use:
+      - Subscribe
+  - name: JP 日本
+    !!merge <<: *a4
+    filter: "(白金).*(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: url-test
+    include-all: true
+    use:
+      - Subscribe
+  - name: US 美国
+    !!merge <<: *a4
+    filter: "(白金).*(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: url-test
+    include-all: true
+    use:
+      - Subscribe
+  - name: 自动选择
+    !!merge <<: *a4
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Auto.png
+    interval: 120
+    lazy: true
+    tolerance: 50
+    type: url-test
+    include-all: true
+rules:
+  - DOMAIN-SUFFIX,mqjd.xyz,节点选择
+  - DOMAIN-SUFFIX,udemycdn.com,DIRECT
+  - DOMAIN-SUFFIX,limbopro.com,节点选择
+  - DOMAIN-SUFFIX,kuliyun.com,节点选择
+  - DOMAIN-KEYWORD,thoughtworks,节点选择
+  - DOMAIN-SUFFIX,z-library.sk,节点选择
+  - DOMAIN-SUFFIX,missav.ai,节点选择
+  - DOMAIN-SUFFIX,superwall.me,节点选择
+  - RULE-SET,Adblock4limbo,REJECT
+  - RULE-SET,Tiktok,Tiktok
+  - RULE-SET,Mine,节点选择
+  - RULE-SET,OpenAI,节点选择
+  - RULE-SET,Adobe,REJECT
+  - RULE-SET,Apple,DIRECT
+  - RULE-SET,Amazon,节点选择
+  - RULE-SET,DingTalk,REJECT
+  - RULE-SET,Facebook,Tiktok
+  - RULE-SET,GitHub,节点选择
+  - RULE-SET,Google,节点选择
+  - RULE-SET,Microsoft,DIRECT
+  - RULE-SET,Netflix,节点选择
+  - RULE-SET,NetEase,节点选择
+  - RULE-SET,Spotify,节点选择
+  - RULE-SET,Steam,DIRECT
+  - RULE-SET,Telegram,节点选择
+  - RULE-SET,Twitter,节点选择
+  - RULE-SET,Tencent,DIRECT
+  - RULE-SET,TencentVideo,DIRECT
+  - RULE-SET,YouTube,节点选择
+  - RULE-SET,WhatsApp,节点选择
+  - RULE-SET,WeChat,DIRECT
+  - RULE-SET,PayPal,节点选择
+  - RULE-SET,Zoom,DIRECT
+  - RULE-SET,China,DIRECT
+  - RULE-SET,ChinaIP,DIRECT
+  - RULE-SET,Proxy,节点选择
+  - SCRIPT,quic,REJECT
+  # Speedtest
+  - GEOSITE,github,节点选择
+  - IP-ASN,62014,节点选择,no-resolve
+  - IP-ASN,59930,节点选择,no-resolve
+  - IP-ASN,44907,节点选择,no-resolve
+  - IP-ASN,211157,节点选择,no-resolve
+  - PROCESS-NAME,Telegram.exe,节点选择
+  - PROCESS-NAME,Telegram,节点选择
+  - GEOSITE,telegram,节点选择
+  # YouTube
+  - GEOSITE,youtube,节点选择
+  - GEOSITE,google,节点选择
+  - GEOSITE,twitter,节点选择
+  - GEOSITE,instagram,Tiktok
+  - GEOSITE,facebook,节点选择
+  # Steam
+  - GEOSITE,steam@cn,DIRECT
+  - GEOSITE,steam,节点选择
+  # Apple LBS
+  - DOMAIN-SUFFIX,iphone-ld.apple.com,DIRECT
+  - DOMAIN-SUFFIX,lcdn-locator.apple.com,DIRECT
+  - DOMAIN-SUFFIX,lcdn-registration.apple.com,DIRECT
+  - DOMAIN-SUFFIX,push.apple.com,DIRECT
+  - PROCESS-NAME,trustd,节点选择
+  # Microsoft
+  - GEOSITE,microsoft@cn,DIRECT
+  - GEOSITE,microsoft,节点选择
+  - GEOSITE,xbox,节点选择
+  # common proxy utils
+  - PROCESS-NAME,v2ray,DIRECT
+  - PROCESS-NAME,Surge,DIRECT
+  - PROCESS-NAME,ss-local,DIRECT
+  - PROCESS-NAME,privoxy,DIRECT
+  - PROCESS-NAME,trojan,DIRECT
+  - PROCESS-NAME,trojan-go,DIRECT
+  - PROCESS-NAME,naive,DIRECT
+  - PROCESS-NAME,CloudflareWARP,DIRECT
+  - PROCESS-NAME,Cloudflare WARP,DIRECT
+  - PROCESS-NAME,p4pclient,DIRECT
+  - PROCESS-NAME,Thunder,DIRECT
+  - PROCESS-NAME,DownloadService,DIRECT
+  - PROCESS-NAME,qbittorrent,DIRECT
+  - PROCESS-NAME,Transmission,DIRECT
+  - PROCESS-NAME,fdm,DIRECT
+  - PROCESS-NAME,aria2c,DIRECT
+  - PROCESS-NAME,Folx,DIRECT
+  - PROCESS-NAME,NetTransport,DIRECT
+  - PROCESS-NAME,uTorrent,DIRECT
+  - PROCESS-NAME,WebTorrent,DIRECT
+  - IP-CIDR,162.159.193.0/24,DIRECT,no-resolve
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,其他流量
+script:
+  shortcuts:
+    quic: network == 'udp' and dst_port == 443
 dns:
   enable: false
   listen: 0.0.0.0:53
-  # ipv6: false # when false, response to AAAA questions will be empty
- 
-  # These nameservers are used to resolve the DNS nameserver hostnames below.
-  # Specify IP addresses only
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
   enhanced-mode: fake-ip # redir-host or fake-ip
   fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
-  
-  # Hostnames in this list will not be resolved with fake IPs
-  # i.e. questions to these domain names will always be answered with their
-  # real IP addresses
-  # fake-ip-filter:
-  #   - '*.lan'
-  #   - localhost.ptlogin2.qq.com
-  
-  # Supports UDP, TCP, DoT, DoH. You can specify the port to connect to.
-  # All DNS questions are sent directly to the nameserver, without proxies
-  # involved. Clash answers the DNS question with the first result gathered.
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
- 
-  # When `fallback` is present, the DNS server will send concurrent requests
-  # to the servers in this section along with servers in `nameservers`.
-  # The answers from fallback servers are used when the GEOIP country
-  # is not `CN`.
-  # fallback:
-  #   - tcp://1.1.1.1
- 
-  # If IP addresses resolved with servers in `nameservers` are in the specified
-  # subnets below, they are considered invalid and results from `fallback`
-  # servers are used instead.
-  #
-  # IP address resolved with servers in `nameserver` is used when
-  # `fallback-filter.geoip` is true and when GEOIP of the IP address is `CN`.
-  #
-  # If `fallback-filter.geoip` is false, results from `fallback` nameservers
-  # are always used, and answers from `nameservers` are discarded.
-  #
-  # This is a countermeasure against DNS pollution attacks.
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-
-
-
-# 策略组引用
-Pr: &a3 {type: select, proxies: [♻️ Auto]}
-Pro: &a1 {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
-Auto: &a4 {type: url-test, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
-Man: &a2 {type: select, use: [Subscribe]}
-classical: &a6 {type: http, behavior: classical, interval: 86400}
-domain: &a5 {type: http, behavior: domain, interval: 86400}
-ipcidr: &a7 {type: http, behavior: ipcidr, interval: 86400}
-
-proxy-providers:
-  Subscribe:
-    <<: *a1
-    url: 订阅地址
-    path: ./proxy_providers/Airport.yaml
-    
-proxies: null
-proxy-groups:
-  - {name: 节点选择, type: select, proxies: [HK,JP,TW,US,SG]}
-  - {name: ⚓️其他流量, type: select, proxies: [DIRECT,节点选择]}
-  - {name: ♻️ Auto, <<: *a4}
-  - {name: HK, <<: *a4, filter: "港|HK|(?i)Hong", type: select}
-  - {name: JP, <<: *a4, filter: "日本|东京|JP|(?i)Japan"}   
-  - {name: TW, <<: *a4, filter: "台|湾|TW|(?i)Taiwan"}
-  - {name: US, <<: *a4, filter: "美|US|(?i)States|American"}
-  - {name: SG, <<: *a4, filter: "新|坡|SG|(?i)Singapore"}
-  - {name: 🚀 Manual, <<: *a2}
-  - {name: Mine, type: select, proxies: [节点选择]}
-  - {name: OpenAI, type: select, proxies: [JP,节点选择,US,SG,TW]}
-  - {name: Adobe, type: select, proxies: [REJECT,节点选择,JP,US,SG,TW]}
-  - {name: Apple, type: select, proxies: [DIRECT,REJECT,节点选择,JP,US,SG,TW]}
-  - {name: Amazon, type: select, proxies: [DIRECT,REJECT,节点选择,JP,US,SG,TW]}
-  - {name: China, type: select, proxies: [DIRECT]}
-  - {name: DingTalk, type: select, proxies: [REJECT,节点选择,JP,US,SG,TW]}
-  - {name: Facebook, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: GitHub, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: Google, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: Microsoft, type: select, proxies: [DIRECT,REJECT,节点选择,JP,US,SG,TW]}
-  - {name: Netflix, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: NetEase, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: Spotify, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: Speedtest, type: select, proxies: [DIRECT]}
-  - {name: Steam, type: select, proxies: [DIRECT]}
-  - {name: Telegram, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: Twitter, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: Tencent, type: select, proxies: [DIRECT]}
-  - {name: TencentVideo, type: select, proxies: [DIRECT]}
-  - {name: YouTube, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: WhatsApp, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: WeChat, type: select, proxies: [DIRECT]}
-  - {name: PayPal, type: select, proxies: [节点选择,JP,US,SG,TW]}
-  - {name: Zoom, type: select, proxies: [DIRECT]}
-  - {name: ChinaIP, type: select, proxies: [DIRECT]}
-
+log-level: warning
+mode: rule
 rule-providers:
-  OpenAI: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/OpenAI.yaml, path: ./ruleset/OpenAI.yaml}
-  Adobe: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Adobe.yaml, path: ./ruleset/Adobe.yaml}
-  Apple: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Apple.yaml, path: ./ruleset/Apple.yaml}
-  Amazon: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Amazon.yaml, path: ./ruleset/Amazon.yaml}
-  China: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/China.yaml, path: ./ruleset/China.yaml}
-  DingTalk: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/DingTalk.yaml, path: ./ruleset/DingTalk.yaml}
-  Facebook: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Facebook.yaml, path: ./ruleset/Facebook.yaml}
-  GitHub: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/GitHub.yaml, path: ./ruleset/GitHub.yaml}
-  Google: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Google.yaml, path: ./ruleset/Google.yaml}
-  Microsoft: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Microsoft.yaml, path: ./ruleset/Microsoft.yaml}
-  Netflix: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Netflix.yaml, path: ./ruleset/Netflix.yaml}
-  NetEase: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/NetEase.yaml, path: ./ruleset/NetEase.yaml}
-  Spotify: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Spotify.yaml, path: ./ruleset/Spotify.yaml}
-  Speedtest: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Speedtest.yaml, path: ./ruleset/Speedtest.yaml}
-  Steam: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Steam.yaml, path: ./ruleset/Steam.yaml}
-  Telegram: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Telegram.yaml, path: ./ruleset/Telegram.yaml}
-  Twitter: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Twitter.yaml, path: ./ruleset/Twitter.yaml}
-  Tencent: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Tencent.yaml, path: ./ruleset/Tencent.yaml}
-  TencentVideo: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/TencentVideo.yaml, path: ./ruleset/TencentVideo.yaml}
-  YouTube: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/YouTube.yaml, path: ./ruleset/YouTube.yaml}
-  WhatsApp: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WhatsApp.yaml, path: ./ruleset/WhatsApp.yaml}
-  WeChat: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WeChat.yaml, path: ./ruleset/WeChat.yaml}
-  PayPal: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/PayPal.yaml, path: ./ruleset/PayPal.yaml}
-  Zoom: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Zoom.yaml, path: ./ruleset/Zoom.yaml}
-  ChinaIP: {<<: *a7, url: https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml, path: ./ruleset/ChinaIP.yaml}
-  Proxy: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Proxy.yaml, path: ./ruleset/Proxy.yaml}
-  Mine: {<<: *a6, url: https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Mine.yaml, path: ./ruleset/Mine.yaml}
-
-rules:
-  - RULE-SET,Mine,Mine
-  - RULE-SET,OpenAI,OpenAI
-  - RULE-SET,Adobe,REJECT
-  - RULE-SET,Apple,Apple
-  - RULE-SET,Amazon,Amazon
-  - RULE-SET,DingTalk,DingTalk
-  - RULE-SET,Facebook,Facebook
-  - RULE-SET,GitHub,GitHub
-  - RULE-SET,Google,Google
-  - RULE-SET,Microsoft,Microsoft
-  - RULE-SET,Netflix,Netflix
-  - RULE-SET,NetEase,NetEase
-  - RULE-SET,Spotify,Spotify
-  - RULE-SET,Speedtest,DIRECT 
-  - RULE-SET,Steam,DIRECT
-  - RULE-SET,Telegram,Telegram
-  - RULE-SET,Twitter,Twitter
-  - RULE-SET,Tencent,Tencent
-  - RULE-SET,TencentVideo,DIRECT
-  - RULE-SET,YouTube,YouTube
-  - RULE-SET,WhatsApp,WhatsApp
-  - RULE-SET,WeChat,WeChat
-  - RULE-SET,PayPal,PayPal
-  - RULE-SET,Zoom,Zoom
-  - RULE-SET,China,DIRECT
-  - RULE-SET,ChinaIP,DIRECT
-  - RULE-SET,Proxy,节点选择
-
- # Local Area Network
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,100.64.0.0/10,DIRECT
-  - IP-CIDR,224.0.0.0/4,DIRECT
-  - IP-CIDR,8.218.42.178/32,DIRECT
- 
-  - IP-CIDR,119.28.28.28/32,DIRECT
-  - IP-CIDR,182.254.116.0/24,DIRECT
-
-  # （可选）使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确的问题，使用 ChinaIP.yaml 时可禁用下列直至（包括）「GEOIP,CN」规则
-
-  - GEOIP,CN,DIRECT
-  - MATCH,⚓️其他流量
+  OpenAI: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/OpenAI.yaml'}
+  Adobe: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Adobe.yaml'}
+  Apple: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Apple.yaml'}
+  Amazon: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Amazon.yaml'}
+  China: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/China.yaml'}
+  DingTalk: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/DingTalk.yaml'}
+  Facebook: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Facebook.yaml'}
+  GitHub: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/GitHub.yaml'}
+  Google: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Google.yaml'}
+  Microsoft: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Microsoft.yaml'}
+  Netflix: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Netflix.yaml'}
+  NetEase: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/NetEase.yaml'}
+  Spotify: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Spotify.yaml'}
+  Speedtest: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Speedtest.yaml'}
+  Steam: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Steam.yaml'}
+  Telegram: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Telegram.yaml'}
+  Twitter: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Twitter.yaml'}
+  Tencent: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Tencent.yaml'}
+  TencentVideo: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/TencentVideo.yaml'}
+  YouTube: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/YouTube.yaml'}
+  WhatsApp: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WhatsApp.yaml'}
+  WeChat: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/WeChat.yaml'}
+  PayPal: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/PayPal.yaml'}
+  Zoom: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Zoom.yaml'}
+  ChinaIP: {!!merge <<: *a7, url: 'https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml'}
+  Proxy: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Proxy.yaml'}
+  Mine: {!!merge <<: *a6, url: 'https://cdn.jsdelivr.net/gh/mqjd/QX@main/clash/ruleset/Mine.yaml', behavior: classical, format: yaml, interval: 86400}
+  Tiktok:
+    behavior: classical
+    format: text
+    interval: 0
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TikTok/TikTok.list
+  Adblock4limbo:
+    behavior: domain
+    interval: 0
+    url: https://limbopro.com/Adblock4limbo.list
