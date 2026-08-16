@@ -1825,7 +1825,6 @@ DOMAIN-SUFFIX,theinstagramhack.com,PROXY
 DOMAIN-SUFFIX,toplayerserver.com,PROXY
 DOMAIN-SUFFIX,wa.me,PROXY
 DOMAIN-SUFFIX,web-instagram.net,PROXY
-DOMAIN-SUFFIX,whatsapp-plus.info,PROXY
 DOMAIN-SUFFIX,whatsapp-plus.me,PROXY
 DOMAIN-SUFFIX,whatsapp-plus.net,PROXY
 DOMAIN-SUFFIX,whatsapp.biz,PROXY
@@ -4356,17 +4355,6 @@ DOMAIN-KEYWORD,youtube,PROXY
 DOMAIN,music.youtube.com,PROXY
 DOMAIN,graph.facebook.com,PROXY
 DOMAIN-SUFFIX,bintray.com,PROXY
-DOMAIN-SUFFIX,whatsapp-plus.info,PROXY
-DOMAIN-SUFFIX,whatsapp-plus.me,PROXY
-DOMAIN-SUFFIX,whatsapp-plus.net,PROXY
-DOMAIN-SUFFIX,whatsapp.biz,PROXY
-DOMAIN-SUFFIX,whatsapp.cc,PROXY
-DOMAIN-SUFFIX,whatsapp.com,PROXY
-DOMAIN-SUFFIX,whatsapp.info,PROXY
-DOMAIN-SUFFIX,whatsapp.net,PROXY
-DOMAIN-SUFFIX,whatsapp.org,PROXY
-DOMAIN-SUFFIX,whatsapp.tv,PROXY
-DOMAIN-SUFFIX,whatsappbrand.com,PROXY
 DOMAIN-KEYWORD,whatsapp,PROXY
 IP-CIDR,158.85.224.160/27,PROXY
 IP-CIDR,158.85.46.128/27,PROXY
