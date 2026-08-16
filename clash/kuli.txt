@@ -4356,7 +4356,6 @@ DOMAIN-KEYWORD,youtube,PROXY
 DOMAIN,music.youtube.com,PROXY
 DOMAIN,graph.facebook.com,PROXY
 DOMAIN-SUFFIX,bintray.com,PROXY
-DOMAIN-SUFFIX,wa.me,PROXY
 DOMAIN-SUFFIX,whatsapp-plus.info,PROXY
 DOMAIN-SUFFIX,whatsapp-plus.me,PROXY
 DOMAIN-SUFFIX,whatsapp-plus.net,PROXY
