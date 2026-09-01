@@ -4,7 +4,7 @@
 x-nextin:
   version: 1
   mode: subscription-template
-  name: "YouTube、Disney+、HBO / Max"
+  name: "ME"
 
 proxies: []
 
@@ -14548,4 +14548,4 @@ rules:
   - "IP-CIDR6,2c0f:f7a8:9020::/48,DIRECT,no-resolve"
   - "IP-CIDR6,2c0f:f7a8:9041::/48,DIRECT,no-resolve"
   - "IP-CIDR6,2c0f:f7a8:9220::/48,DIRECT,no-resolve"
-  - "MATCH,其他流量"
+  - "MATCH,DIRECT"
