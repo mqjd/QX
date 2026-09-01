@@ -55,7 +55,40 @@ rules:
   - "GEOSITE,facebook,TikTok"
   # Instagram · Nextin bundled MRS
   - "GEOSITE,instagram,TikTok"
+  - "DOMAIN-SUFFIX,music.youtube.com,TikTok"
   # GFW 列表 · Nextin bundled MRS
   - "GEOSITE,gfw,节点选择"
+
+  - "GEOSITE,xai,节点选择"
+  # YouTube · Nextin bundled MRS
+  - "GEOSITE,youtube,节点选择"
+  # Netflix · Nextin bundled MRS
+  - "GEOSITE,netflix,节点选择"
+  # Disney+ · Nextin bundled MRS
+  - "GEOSITE,disney,节点选择"
+  # HBO / Max · Nextin bundled MRS
+  - "GEOSITE,hbo,节点选择"
+  # Spotify · Nextin bundled MRS
+  - "GEOSITE,spotify,节点选择"
+  # Twitch · Nextin bundled MRS
+  - "GEOSITE,twitch,节点选择"
+  # Hulu · Nextin bundled MRS
+  - "GEOSITE,hulu,节点选择"
+  # Telegram · Nextin bundled MRS
+  - "GEOSITE,telegram,节点选择"
+  # X / Twitter · Nextin bundled MRS
+  - "GEOSITE,twitter,节点选择"
+  # WhatsApp · Nextin bundled MRS
+  - "GEOSITE,whatsapp,节点选择"
+  # Reddit · Nextin bundled MRS
+  - "GEOSITE,reddit,节点选择"
+  # Discord · Nextin bundled MRS
+  - "GEOSITE,discord,节点选择"
+  # Pinterest · Nextin bundled MRS
+  - "GEOSITE,pinterest,节点选择"
+  # LINE · Nextin bundled MRS
+  - "GEOSITE,line,节点选择"
+  # GitHub · Nextin bundled MRS
+  - "GEOSITE,github,节点选择"
   - "DOMAIN-SUFFIX,njav.tv,节点选择"
   - "MATCH,其他节点"
