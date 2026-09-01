@@ -57,38 +57,40 @@ rules:
   - "GEOSITE,instagram,TikTok"
   - "DOMAIN-SUFFIX,music.youtube.com,TikTok"
   # GFW 列表 · Nextin bundled MRS
-  - "GEOSITE,gfw,节点选择"
 
-  - "GEOSITE,xai,节点选择"
-  # YouTube · Nextin bundled MRS
-  - "GEOSITE,youtube,节点选择"
-  # Netflix · Nextin bundled MRS
-  - "GEOSITE,netflix,节点选择"
-  # Disney+ · Nextin bundled MRS
-  - "GEOSITE,disney,节点选择"
-  # HBO / Max · Nextin bundled MRS
-  - "GEOSITE,hbo,节点选择"
-  # Spotify · Nextin bundled MRS
-  - "GEOSITE,spotify,节点选择"
-  # Twitch · Nextin bundled MRS
-  - "GEOSITE,twitch,节点选择"
-  # Hulu · Nextin bundled MRS
-  - "GEOSITE,hulu,节点选择"
-  # Telegram · Nextin bundled MRS
-  - "GEOSITE,telegram,节点选择"
-  # X / Twitter · Nextin bundled MRS
-  - "GEOSITE,twitter,节点选择"
-  # WhatsApp · Nextin bundled MRS
-  - "GEOSITE,whatsapp,节点选择"
-  # Reddit · Nextin bundled MRS
-  - "GEOSITE,reddit,节点选择"
-  # Discord · Nextin bundled MRS
-  - "GEOSITE,discord,节点选择"
-  # Pinterest · Nextin bundled MRS
-  - "GEOSITE,pinterest,节点选择"
-  # LINE · Nextin bundled MRS
-  - "GEOSITE,line,节点选择"
-  # GitHub · Nextin bundled MRS
-  - "GEOSITE,github,节点选择"
   - "DOMAIN-SUFFIX,njav.tv,节点选择"
+  - "DOMAIN-SUFFIX,comments.app,节点选择"
+  - "DOMAIN-SUFFIX,contest.com,节点选择"
+  - "DOMAIN-SUFFIX,graph.org,节点选择"
+  - "DOMAIN-SUFFIX,quiz.directory,节点选择"
+  - "DOMAIN-SUFFIX,stel.com,节点选择"
+  - "DOMAIN-SUFFIX,t.me,节点选择"
+  - "DOMAIN-SUFFIX,tdesktop.com,节点选择"
+  - "DOMAIN-SUFFIX,telega.one,节点选择"
+  - "DOMAIN-SUFFIX,telegra.ph,节点选择"
+  - "DOMAIN-SUFFIX,telegram-cdn.org,节点选择"
+  - "DOMAIN-SUFFIX,telegram.dog,节点选择"
+  - "DOMAIN-SUFFIX,telegram.me,节点选择"
+  - "DOMAIN-SUFFIX,telegram.org,节点选择"
+  - "DOMAIN-SUFFIX,telegram.space,节点选择"
+  - "DOMAIN-SUFFIX,telegramdownload.com,节点选择"
+  - "DOMAIN-SUFFIX,telesco.pe,节点选择"
+  - "DOMAIN-SUFFIX,tg.dev,节点选择"
+  - "DOMAIN-SUFFIX,tx.me,节点选择"
+  - "DOMAIN-SUFFIX,usercontent.dev,节点选择"
+  - "DOMAIN-KEYWORD,nicegram,节点选择"
+  - "DOMAIN-KEYWORD,telegram,节点选择"
+  - "IP-CIDR,109.239.140.0/24,节点选择"
+  - "IP-CIDR,149.154.160.0/20,节点选择"
+  - "IP-CIDR,185.76.151.0/24,节点选择"
+  - "IP-CIDR,5.28.195.163/32,节点选择"
+  - "IP-CIDR,5.28.195.205/32,节点选择"
+  - "IP-CIDR,91.105.192.0/23,节点选择"
+  - "IP-CIDR,91.108.0.0/16,节点选择"
+  - "IP-CIDR,95.161.64.0/20,节点选择"
+  - "IP-CIDR6,2001:67c:4e8::/48,节点选择"
+  - "IP-CIDR6,2001:b28:f23c::/47,节点选择"
+  - "IP-CIDR6,2001:b28:f23f::/48,节点选择"
+  - "IP-CIDR6,2a0a:f280::/32,节点选择"
+  - "GEOSITE,gfw,节点选择"
   - "MATCH,其他节点"
