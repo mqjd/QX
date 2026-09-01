@@ -9,16 +9,15 @@ x-nextin:
 proxies: []
 
 proxy-groups:
-  - name: "TikTok"
-    type: select
-    include-all-proxies: true
-    filter: "(?i)((?:日本|Japan|Tokyo|Osaka|\\bJP\\b)|(?:台湾|Taiwan|\\bTW\\b)|(?:美国|United States|Los Angeles|Seattle|\\bUSA?\\b)|(?:韩国|Korea|Seoul|\\bKR\\b))"
-    exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-
   - name: "节点选择"
     type: select
     include-all-proxies: true
     filter: "(?i)((?:香港|Hong Kong|\\bHK\\b)|(?:日本|Japan|Tokyo|Osaka|\\bJP\\b)|(?:新加坡|Singapore|\\bSG\\b)|(?:台湾|Taiwan|\\bTW\\b)|(?:美国|United States|Los Angeles|Seattle|\\bUSA?\\b)|(?:韩国|Korea|Seoul|\\bKR\\b))"
+    exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
+  - name: "TikTok"
+    type: select
+    include-all-proxies: true
+    filter: "(?i)((?:日本|Japan|Tokyo|Osaka|\\bJP\\b)|(?:台湾|Taiwan|\\bTW\\b)|(?:美国|United States|Los Angeles|Seattle|\\bUSA?\\b)|(?:韩国|Korea|Seoul|\\bKR\\b))"
     exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
 
 rules:
@@ -47,6 +46,10 @@ rules:
   - "GEOSITE,category-ads-all,REJECT"
   # TikTok · Nextin bundled MRS
   - "GEOSITE,tiktok,TikTok"
+  # Facebook · Nextin bundled MRS
+  - "GEOSITE,facebook,TikTok"
+  # Instagram · Nextin bundled MRS
+  - "GEOSITE,instagram,TikTok"
   # 中国 IP · 9651 rules
   - "IP-CIDR,1.0.1.0/24,DIRECT,no-resolve"
   - "IP-CIDR,1.0.2.0/23,DIRECT,no-resolve"
