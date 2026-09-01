@@ -9,6 +9,14 @@ x-nextin:
 proxies: []
 
 proxy-groups:
+
+  - name: "其他节点"
+    type: select
+    include-all-proxies: true
+    proxies:
+      - DIRECT
+      - "节点选择"
+
   - name: "节点选择"
     type: select
     include-all-proxies: true
@@ -9704,4 +9712,4 @@ rules:
   - "IP-CIDR6,2c0f:f7a8:9220::/48,DIRECT,no-resolve"
   # GFW 列表 · Nextin bundled MRS
   - "GEOSITE,gfw,节点选择"
-  - "MATCH,DIRECT"
+  - "MATCH,其他节点"
