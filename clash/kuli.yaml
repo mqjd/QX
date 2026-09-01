@@ -13,82 +13,12 @@ proxy-groups:
     type: select
     include-all-proxies: true
     exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    proxies:
-      - "自动选择"
-      - "HK 香港"
-      - "TW 台湾"
-      - "SG 新加坡"
-      - "JP 日本"
-      - "US 美国"
-      - "KR 韩国"
-      - DIRECT
-
-  - name: "其他流量"
-    type: select
-    proxies:
-      - DIRECT
-      - "节点选择"
 
   - name: "Tiktok"
     type: select
-    proxies:
-      - "JP 日本"
-      - "HK 香港"
-      - "TW 台湾"
-      - "SG 新加坡"
-      - "US 美国"
-      - "KR 韩国"
-
-  - name: "HK 香港"
-    type: select
     include-all-proxies: true
-    filter: "(?i)((?:香港|Hong Kong|\\bHK\\b))"
+    filter: "(?i)((?:日本|Japan|Tokyo|Osaka|\\bJP\\b)|(?:台湾|Taiwan|\\bTW\\b)|(?:美国|United States|Los Angeles|Seattle|\\bUSA?\\b)|(?:韩国|Korea|Seoul|\\bKR\\b))"
     exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-
-  - name: "JP 日本"
-    type: select
-    include-all-proxies: true
-    filter: "(?i)((?:日本|Japan|Tokyo|Osaka|\\bJP\\b))"
-    exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-
-  - name: "SG 新加坡"
-    type: select
-    include-all-proxies: true
-    filter: "(?i)((?:新加坡|Singapore|\\bSG\\b))"
-    exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-
-  - name: "TW 台湾"
-    type: select
-    include-all-proxies: true
-    filter: "(?i)((?:台湾|Taiwan|\\bTW\\b))"
-    exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-
-  - name: "US 美国"
-    type: select
-    include-all-proxies: true
-    filter: "(?i)((?:美国|United States|Los Angeles|Seattle|\\bUSA?\\b))"
-    exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-
-  - name: "KR 韩国"
-    type: select
-    include-all-proxies: true
-    filter: "(?i)((?:韩国|Korea|Seoul|\\bKR\\b))"
-    exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-
-  - name: "自动选择"
-    type: url-test
-    include-all-proxies: true
-    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-
-  - name: "故障转移"
-    type: fallback
-    include-all-proxies: true
-    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
 
 rules:
   # 私有网络 · Nextin bundled MRS
