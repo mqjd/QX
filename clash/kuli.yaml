@@ -4,7 +4,7 @@
 x-nextin:
   version: 1
   mode: subscription-template
-  name: "ME"
+  name: "YouTube、Disney+、HBO / Max"
 
 proxies: []
 
@@ -22,6 +22,23 @@ proxy-groups:
       - "US 美国"
       - "KR 韩国"
       - DIRECT
+
+  - name: "其他流量"
+    type: select
+    proxies:
+      - DIRECT
+      - "节点选择"
+
+  - name: "Tiktok"
+    type: select
+    proxies:
+      - "JP 日本"
+      - "HK 香港"
+      - "TW 台湾"
+      - "SG 新加坡"
+      - "US 美国"
+      - "KR 韩国"
+
   - name: "HK 香港"
     type: select
     include-all-proxies: true
@@ -4765,12 +4782,12 @@ rules:
   - "DOMAIN-SUFFIX,xoom.us,节点选择"
   - "DOMAIN-SUFFIX,xoomcom.com,节点选择"
   - "DOMAIN-KEYWORD,paypal,节点选择"
-  - "DOMAIN-SUFFIX,zoom.us,DIRECT,Zoom"
-  - "DOMAIN-SUFFIX,zpns.zoom.us,DIRECT,Zoom"
-  - "DOMAIN-SUFFIX,cloud.zoom.us,DIRECT,Zoom"
-  - "DOMAIN-SUFFIX,zoomgov.com,DIRECT,Zoom"
-  - "DOMAIN-SUFFIX,zoominfo.com,DIRECT,Zoom"
-  - "DOMAIN-KEYWORD,zoom,DIRECT,Zoom"
+  - "DOMAIN-SUFFIX,zoom.us,DIRECT"
+  - "DOMAIN-SUFFIX,zpns.zoom.us,DIRECT"
+  - "DOMAIN-SUFFIX,cloud.zoom.us,DIRECT"
+  - "DOMAIN-SUFFIX,zoomgov.com,DIRECT"
+  - "DOMAIN-SUFFIX,zoominfo.com,DIRECT"
+  - "DOMAIN-KEYWORD,zoom,DIRECT"
   - "DOMAIN-SUFFIX,lixiaolai.com,节点选择"
   - "DOMAIN-SUFFIX,btdig.com,节点选择"
   - "DOMAIN-SUFFIX,njav.tv,节点选择"
