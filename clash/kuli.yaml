@@ -14,8 +14,6 @@ proxy-groups:
     type: select
     proxies:
       - "自动选择"
-      - "PT 香港"
-      - "PT 台湾"
       - "HK 香港"
       - "TW 台湾"
       - "SG 新加坡"
