@@ -9,14 +9,6 @@ x-nextin:
 proxies: []
 
 proxy-groups:
-  - name: "🚀 节点选择"
-    type: select
-    include-all-proxies: true
-    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    proxies:
-      - "♻️ 自动选择"
-      - "🛡️ 故障转移"
-      - DIRECT
   - name: "TikTok"
     type: select
     include-all-proxies: true
@@ -28,19 +20,6 @@ proxy-groups:
     include-all-proxies: true
     filter: "(?i)((?:香港|Hong Kong|\\bHK\\b)|(?:日本|Japan|Tokyo|Osaka|\\bJP\\b)|(?:新加坡|Singapore|\\bSG\\b)|(?:台湾|Taiwan|\\bTW\\b)|(?:美国|United States|Los Angeles|Seattle|\\bUSA?\\b)|(?:韩国|Korea|Seoul|\\bKR\\b))"
     exclude-filter: "(?i)(?:(?:(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)))"
-  - name: "♻️ 自动选择"
-    type: url-test
-    include-all-proxies: true
-    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🛡️ 故障转移"
-    type: fallback
-    include-all-proxies: true
-    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
 
 rules:
   # 私有网络 · Nextin bundled MRS
