@@ -12,6 +12,8 @@ proxy-groups:
   # 功能分组
   - name: 节点选择
     type: select
+    include-all-proxies: true
+    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
     proxies:
       - "自动选择"
       - "HK 香港"
@@ -23,12 +25,16 @@ proxy-groups:
 
   - name: 其他流量
     type: select
+    include-all-proxies: true
+    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
     proxies:
       - "节点选择"
       - "DIRECT"
 
   - name: Tiktok
     type: select
+    include-all-proxies: true
+    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
     proxies:
       - "HK 香港"
       - "TW 台湾"
@@ -40,8 +46,7 @@ proxy-groups:
   - name: HK 香港
     type: url-test
     exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    lazy: true
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     filter: "澳门|🇲🇴|港|🇭🇰|HK|(?i)Hong"
     interval: 120
     tolerance: 50
@@ -50,8 +55,7 @@ proxy-groups:
   - name: TW 台湾
     type: url-test
     exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    lazy: true
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     filter: "(?=.*(台|TW|Tai))^((?!(免费)).)*$"
     interval: 120
     tolerance: 50
@@ -60,8 +64,7 @@ proxy-groups:
   - name: SG 新加坡
     type: url-test
     exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    lazy: true
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     filter: "(?i)(新加坡|坡|狮城|马来|SG|Singapore)"
     interval: 120
     tolerance: 50
@@ -70,9 +73,8 @@ proxy-groups:
   - name: JP 日本
     type: url-test
     exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    lazy: true
-    url: "http://www.gstatic.com/generate_204"
-    filter: "(白金).*(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)"
+    url: "https://www.gstatic.com/generate_204"
+    filter: "(火箭).*(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)"
     interval: 120
     tolerance: 50
     include-all-proxies: true
@@ -80,21 +82,19 @@ proxy-groups:
   - name: US 美国
     type: url-test
     exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    lazy: true
-    url: "http://www.gstatic.com/generate_204"
-    filter: "(白金).*(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
+    url: "https://www.gstatic.com/generate_204"
+    filter: "(火箭).*(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
     interval: 120
     tolerance: 50
     include-all-proxies: true
 
   - name: 自动选择
     type: url-test
-    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
-    lazy: true
-    url: "http://www.gstatic.com/generate_204"
-    interval: 120
-    tolerance: 50
     include-all-proxies: true
+    exclude-filter: "(?i)(剩余|流量|套餐|到期|重置|官网|Traffic|Expire)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
 rules:
   # 私有网络 · Nextin bundled MRS
