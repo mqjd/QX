@@ -170,4 +170,6 @@ rules:
   - "IP-CIDR6,2001:b28:f23f::/48,节点选择"
   - "IP-CIDR6,2a0a:f280::/32,节点选择"
   - "GEOSITE,gfw,节点选择"
+  - "GEOSITE,youtube,节点选择"
+  - "GEOSITE,spotify,节点选择"
   - "MATCH,其他节点"
